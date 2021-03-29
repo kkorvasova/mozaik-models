@@ -18,9 +18,9 @@ def create_experiments(model):
         MeasureOrientationTuningFullfield(model, ParameterSet(
             {'num_orientations': 10,
             'spatial_frequency': 0.8,
-            'temporal_frequency': 0,
+            'temporal_frequency': 0.,
             'grating_duration': 5*3*8*7,
-            'contrasts': [100],
+            'contrasts': [100.],
             'num_trials':10})),
 
         MeasureSizeTuning(model, ParameterSet(
