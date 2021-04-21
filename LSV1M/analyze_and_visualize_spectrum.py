@@ -205,7 +205,7 @@ def perform_analysis_and_visualization(data_store):
                         ParameterSet({'bin_length': 2.,
                                     'min_freq': 2.,
                                     'zscore':False,
-                                    'stimulus_id': orientation}))
+                                    'stimulus_id': str(orientation)}))
 
     #    plotting.SpectrumPlot(dsv, ParameterSet({'binsize': 2.,
     #                                'sheet_names': sheets}))
