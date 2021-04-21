@@ -8,4 +8,4 @@
 
 # export HDF5_USE_FILE_LOCKING=FALSE
 
-python run_spectral_analysis.py 
+python run_spectral_analysis.py 20210329-213848\[param.defaults\]CombinationParamSearch\{trial\:\[1\]\}/SelfSustainedPushPull_ParameterSearch_____trial\:1/
