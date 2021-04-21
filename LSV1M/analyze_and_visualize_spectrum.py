@@ -12,6 +12,8 @@ from mozaik.controller import Global
 
 import ast
 
+import numpy as np
+
 logger = mozaik.getMozaikLogger()
 
 process = psutil.Process(os.getpid())
