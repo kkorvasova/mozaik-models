@@ -192,7 +192,7 @@ def perform_analysis_and_visualization(data_store):
     trials = np.unique(np.array(
                     [stimulus['trial'] for stimulus in stimuli_dict
                                     if 'trial' in stimulus]))
-    print 'Number of trials': len(trials)
+    print 'Number of trials:', len(trials)
 
     for orientation in orientations:
         dsv = param_filter_query(data_store,
