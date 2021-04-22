@@ -27,7 +27,8 @@ process = psutil.Process(os.getpid())
 
 def perform_analysis_and_visualization(data_store):
 
-    minfreq = 2.
+    minfreq = 2. #(Hz)
+    binsize = 2. #(ms)
 
     sheets = list(set(data_store.sheets()) & set(
         ['V1_Exc_L4', 'V1_Inh_L4', 'V1_Exc_L2/3', 'V1_Inh_L2/3']))
@@ -38,6 +39,8 @@ def perform_analysis_and_visualization(data_store):
 
     NeuronAnnotationsToPerNeuronValues(data_store, ParameterSet({})).analyse()
 
+    analysis.PSTH(data_store, ParameterSet({'bin_length': binsize})).analyse()
+
     segs = param_filter_query(data_store, sheet_name="V1_Exc_L2/3", ).get_segments()
     print 'Loaded altogether {} experiments'.format(len(segs))
 
@@ -47,12 +50,11 @@ def perform_analysis_and_visualization(data_store):
     #         'st_name': 'InternalStimulus'}
 
 
-
     print 'Starting to analyze spontaneous activity.'
     dsv = param_filter_query(data_store, st_name='InternalStimulus')
 
     analysis.PopulationActivitySpectrum(dsv,
-                        ParameterSet({'bin_length': 2.,
+                        ParameterSet({'bin_length': binsize,
                                     'min_freq': minfreq,
                                     'zscore':False,
                                     'stimulus_id': 'spontaneous',
@@ -86,7 +88,7 @@ def perform_analysis_and_visualization(data_store):
                                 st_orientation=orientation)
 
         analysis.PopulationActivitySpectrum(dsv,
-                        ParameterSet({'bin_length': 2.,
+                        ParameterSet({'bin_length': binsize,
                                     'min_freq': minfreq,
                                     'zscore':False,
                                     'stimulus_id': str(orientation),
