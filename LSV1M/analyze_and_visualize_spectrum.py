@@ -173,10 +173,10 @@ def perform_analysis_and_visualization(data_store):
                         ParameterSet({'bin_length': 2.,
                                     'min_freq': 2.,
                                     'zscore':False,
-                                    'stimulus_id': 'spontaneous'}))
+                                    'stimulus_id': 'spontaneous'})).analyse()
 
     for sheet in sheets:
-        plotting.SpectrumPlot(dsv, ParameterSet({'sheet_name': sheet}))
+        plotting.SpectrumPlot(dsv, ParameterSet({'sheet_name': sheet})).plot()
 
 
     print 'Starting to analyze FullfieldDriftingSinusoidalGrating.'
@@ -205,7 +205,7 @@ def perform_analysis_and_visualization(data_store):
                         ParameterSet({'bin_length': 2.,
                                     'min_freq': 2.,
                                     'zscore':False,
-                                    'stimulus_id': str(orientation)}))
+                                    'stimulus_id': str(orientation)})).analyse()
 
     for sheet in sheets:
-        plotting.SpectrumPlot(dsv, ParameterSet({'sheet_name': sheet}))
+        plotting.SpectrumPlot(dsv, ParameterSet({'sheet_name': sheet})).plot()
