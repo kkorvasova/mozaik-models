@@ -55,7 +55,8 @@ def perform_analysis_and_visualization(data_store):
                         ParameterSet({'bin_length': 2.,
                                     'min_freq': minfreq,
                                     'zscore':False,
-                                    'stimulus_id': 'spontaneous'})).analyse()
+                                    'stimulus_id': 'spontaneous',
+                                    'sheet_names': sheets})).analyse()
 
     for sheet in sheets:
         plotting.SpectrumPlot(dsv, ParameterSet({'sheet_name': sheet,
@@ -88,7 +89,8 @@ def perform_analysis_and_visualization(data_store):
                         ParameterSet({'bin_length': 2.,
                                     'min_freq': minfreq,
                                     'zscore':False,
-                                    'stimulus_id': str(orientation)})).analyse()
+                                    'stimulus_id': str(orientation),
+                                    'sheet_names': sheets})).analyse()
 
     for sheet in sheets:
         plotting.SpectrumPlot(dsv, ParameterSet({'sheet_name': sheet,
