@@ -27,6 +27,8 @@ process = psutil.Process(os.getpid())
 
 def perform_analysis_and_visualization(data_store):
 
+    minfreq = 2.
+
     sheets = list(set(data_store.sheets()) & set(
         ['V1_Exc_L4', 'V1_Inh_L4', 'V1_Exc_L2/3', 'V1_Inh_L2/3']))
     # exc_sheets = list(set(data_store.sheets()) &
@@ -51,12 +53,13 @@ def perform_analysis_and_visualization(data_store):
 
     analysis.PopulationActivitySpectrum(dsv,
                         ParameterSet({'bin_length': 2.,
-                                    'min_freq': 2.,
+                                    'min_freq': minfreq,
                                     'zscore':False,
                                     'stimulus_id': 'spontaneous'})).analyse()
 
     for sheet in sheets:
-        plotting.SpectrumPlot(dsv, ParameterSet({'sheet_name': sheet})).plot()
+        plotting.SpectrumPlot(dsv, ParameterSet({'sheet_name': sheet,
+                                                'min_freq': minfreq})).plot()
 
 
     print 'Starting to analyze FullfieldDriftingSinusoidalGrating.'
@@ -83,9 +86,10 @@ def perform_analysis_and_visualization(data_store):
 
         analysis.PopulationActivitySpectrum(dsv,
                         ParameterSet({'bin_length': 2.,
-                                    'min_freq': 2.,
+                                    'min_freq': minfreq,
                                     'zscore':False,
                                     'stimulus_id': str(orientation)})).analyse()
 
     for sheet in sheets:
-        plotting.SpectrumPlot(dsv, ParameterSet({'sheet_name': sheet})).plot()
+        plotting.SpectrumPlot(dsv, ParameterSet({'sheet_name': sheet,
+                                                'min_freq': minfreq})).plot()
