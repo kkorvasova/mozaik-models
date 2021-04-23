@@ -38,20 +38,25 @@ def perform_analysis_and_visualization(data_store):
     segs = param_filter_query(data_store, sheet_name="V1_Exc_L2/3", ).get_segments()
     print 'Loaded altogether {} experiments'.format(len(segs))
 
+    # bin spikes
+    analysis.PSTH(data_store,
+            ParameterSet({'bin_length': binsize})).analyse()
+
+
     analysis.PopulationActivitySpectrum(data_store,
                         ParameterSet({'bin_length': binsize,
                                     'min_freq': minfreq,
                                     'zscore':False,
                                     'sheet_names': sheets})).analyse()
-    # 
-    # for sheet in sheets:
-    #     dsv = param_filter_query(data_store, sheet_name=sheet)
-    #     plotting.SpectrumPlot(dsv,
-    #                             ParameterSet({'sheet_name': sheet,
-    #                                             'min_freq': minfreq}),
-    #                             fig_param={'dpi': 100, 'figsize': (6, 6)},
-    #                             plot_file_name='Spectrum_{}.png'.format(sheet)
-    #                                ).plot()
+
+    for sheet in sheets:
+        dsv = param_filter_query(data_store, sheet_name=sheet)
+        plotting.SpectrumPlot(dsv,
+                                ParameterSet({'sheet_name': sheet,
+                                                'min_freq': minfreq}),
+                                fig_param={'dpi': 100, 'figsize': (6, 6)},
+                                plot_file_name='Spectrum_{}.png'.format(sheet)
+                                   ).plot()
 
 
 
